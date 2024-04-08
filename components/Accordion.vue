@@ -8,14 +8,26 @@ import { items } from '~/vars/items';
       <Icon class="mr-2" name="mage:question-mark-circle" size="1.5em" />
       <p>FAQs</p>
     </div>
-    <UAccordion
-      class="accordion"
-      variant="solid"
-      size="xl"
-      color="white"
-      multiple
-      :items="items"
-    />
+    
+  <UAccordion class="mt-5" multiple :items="items">
+    <template #default="{ item, index, open }">
+      <UButton color="gray" variant="ghost" class="items-start flex flex-col text-left p-4 mb-3 border bg-white rounded-md hover:bg-white hover:border-black transition duration-100 ease-linear">
+        <div class="flex justify-between w-full">
+          <span class="text-black">{{ item.label }}</span>
+          <UIcon
+              name="i-heroicons-chevron-down-20-solid"
+              class="w-5 h-5 transform transition-transform duration-200"
+              :class="[open && 'rotate-180']"
+          />
+        </div>
+      <template #item="{ item }">
+        <p class="mt-4 pt-3 text-slate-600 font-normal bg-white border-t">
+          {{ item.content }}
+        </p>
+      </template>
+      </UButton>
+    </template>
+  </UAccordion>
   </div>
 </template>
 
@@ -33,8 +45,5 @@ import { items } from '~/vars/items';
   padding: 30px 40px 30px 40px;
   max-width: 95%;
   margin: 25px auto;
-}
-.accordion {
-  margin-top: 20px;
 }
 </style>
