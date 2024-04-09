@@ -10,8 +10,8 @@ import { items } from '~/vars/items';
     </div>
     
   <UAccordion class="mt-5" multiple :items="items">
-    <template #default="{ item, index, open }">
-      <UButton color="gray" variant="ghost" class="items-start flex flex-col text-left p-4 mb-3 border bg-white rounded-md hover:bg-white hover:border-black transition duration-100 ease-linear">
+    <template #default="{item, index, open }">
+      <UButton color="gray" variant="ghost" class="mb-3 items-start flex flex-col text-left p-4 border bg-white rounded-md hover:bg-white hover:border-black transition duration-100 ease-linear">
         <div class="flex justify-between w-full">
           <span class="text-black">{{ item.label }}</span>
           <UIcon
@@ -20,9 +20,9 @@ import { items } from '~/vars/items';
               :class="[open && 'rotate-180']"
           />
         </div>
-      <template #item="{ item }">
+      <template v-if="open">
         <p class="mt-4 pt-3 text-slate-600 font-normal bg-white border-t">
-          {{ item.content }}
+          {{ item.description }}
         </p>
       </template>
       </UButton>
